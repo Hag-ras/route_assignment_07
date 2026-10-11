@@ -1,9 +1,10 @@
 import mongoose, { mongo } from "mongoose";
 
-export const bookSchema = new mongoose.Schema({
+export const noteSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true,
+        minLength:[1, `title can't be empty`],
         vallidate:{
             validator:function(val){
                 if(val === val.toUpperCase()){
@@ -17,10 +18,11 @@ export const bookSchema = new mongoose.Schema({
     },
     content:{
         type:String,
-        required:true
+        required:true,
+        minLength:[3, `content should be at least 3 character`]
     },
     userId:{
-        type:mongoose.Types.ObjectId(),
+        type:mongoose.Types.ObjectId,
         ref:"User",
         required:true
     }
@@ -32,9 +34,9 @@ export const bookSchema = new mongoose.Schema({
     toJSON:{virtuals:true},
     strict:true,
     strictQuery:true,
-    collection:"Assignment08_users",
+    collection:"Assignment08_notes",
     optimisticConcurrency:true,
 
 })
 
-export const BookModel = mongoose.models.Book || mongoose.model('Book',bookSchema)
+export const NoteModel = mongoose.models.Note || mongoose.model('Note',noteSchema)

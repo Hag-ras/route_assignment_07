@@ -1,2 +1,2 @@
-export * from './book.model.js'
+export * from './note.model.js'
 export * from './user.model.js' 

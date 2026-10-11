@@ -1,6 +1,6 @@
 import {bootStrapDB} from './DB/connection.db.js'
 import { globalErrorHandling } from './middleware/index.js'
-import {    userController} from './modules/index.js'
+import {    noteController, userController} from './modules/index.js'
 import express from 'express'
 import cors from 'cors'
 const app = express()
@@ -14,6 +14,7 @@ app.use(cors(), express.json())
 
 // app.use("/auth",authenticationController)
 app.use('/users',userController)
+app.use('/notes',noteController)
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
